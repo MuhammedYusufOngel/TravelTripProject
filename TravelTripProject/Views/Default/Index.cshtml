@@ -1,0 +1,70 @@
+﻿@using TravelTripProject.Models.Classes
+@model List<Blog>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TestLayout.cshtml";
+}
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+    <div class="header-banner">
+        <div class="wrap">
+            <div class="banner">
+                <div class="indent">
+                    <h2 class="indent-left margin-bot">Plan the Easy Trip</h2>
+                    <div class="header_bottom_right_images">
+
+                        <div class="slider" style="height: 535px">
+                            <ul class="rslides" id="slider1">
+                                @foreach (var item in Model)
+                                {
+                                    <li><img src="@item.BlogImage" style="height: 535px; width: 1000px" alt=""></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class"content">
+        <div class="wrap">
+            <div class="wrapper">
+                <div class="con-top">
+                    <h3>Merhabalar, Ben Yusuf!</h3>
+                    <p>Burası benim gezdiğim yerleri tanıttığım bir web sitesi. Bu site MVC5 ve ASP.NET teknolojileri ile yapılmıştır.</p>
+                </div>
+
+                @Html.Action("PartialTop", "Default")
+
+                <div class="grids">
+                    <div class="box1">
+
+                        @Html.Action("PartialTop10", "Default")
+
+                        <div class="padding1">
+                            <h4>Recent Blogs & First Blogs</h4>
+
+                            @Html.Action("PartialRecentBlogs", "Default")
+
+                            @Html.Action("PartialFirstBlogs", "Default")
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

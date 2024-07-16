@@ -1,0 +1,33 @@
+﻿@model TravelTripProject.Models.Classes.Comment
+
+@{
+    ViewBag.Title = "UpdateComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Update Comment</h2>
+@using (Html.BeginForm("UpdateComment", "Admin", FormMethod.Post))
+{
+    @Html.LabelFor(x => x.Id)
+    <br />
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <br />
+    @Html.LabelFor(x => x.UserName)
+    <br />
+    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.LabelFor(x => x.Mail)
+    <br />
+    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.LabelFor(x => x.CommentText)
+    <br />
+    @Html.TextAreaFor(x => x.CommentText, 10, 3, new { @class = "form-control" })
+    <br />
+    <br />
+
+    <button class="btn btn-success">Save</button>
+}
