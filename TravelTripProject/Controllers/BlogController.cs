@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Xml;
 using TravelTripProject.Models.Classes;
 
 namespace TravelTripProject.Controllers
@@ -30,6 +27,10 @@ namespace TravelTripProject.Controllers
 
             blogComment.Value1 = c.Blogs.Where(x => x.Id == id).ToList();
             blogComment.Value2 = c.Comments.Where(x => x.BlogId == id).ToList();
+
+            var blog = c.Blogs.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+            ViewBag.title1 = blog.Result.Title;
             return View(blogComment);
         }
 
@@ -44,9 +45,21 @@ namespace TravelTripProject.Controllers
         [HttpPost]
         public PartialViewResult PartialComment(Comment p)
         {
-            c.Comments.Add(p);
-            c.SaveChanges();
-            return PartialView();
+            using (var context = new Context())
+            {
+                var comment = new Comment
+                {
+                    UserName = p.UserName,
+                    Mail = p.Mail,
+                    BlogId = p.BlogId,
+                    CommentText = p.CommentText,
+                };
+
+                context.Comments.Add(comment);
+                context.SaveChanges();
+
+                return PartialView();
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ namespace TravelTripProject.Controllers
 
             if (value != null)
             {
-                FormsAuthentication.SetAuthCookie(value.Username, false);
+                FormsAuthentication.SetAuthCookie(value.Username, true);
                 Session["Username"] = value.Username.ToString();
                 return RedirectToAction("Index", "Admin");
             }

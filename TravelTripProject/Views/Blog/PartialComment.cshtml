@@ -1,10 +1,57 @@
-﻿<div class="content-form">
-    <h3>Leave a comment</h3>
-    <form method="post" action="/Blog/BlogDetails/@ViewBag.id">
-        <input type="text" name="UserName" placeholder="Name" required />
-        <input type="text" name="Mail" placeholder="Email" required />
-        <input type="text" value="@ViewBag.id" name="Blogid" />
-        <textarea name="CommentText" placeholder="Message"></textarea>
-        <input type="submit" value="SEND" />
+﻿@*<div class="content-form">
+        <h3>Bir yorum bırak</h3>
+        <form method="post" action="/Blog/BlogDetails/@ViewBag.id">
+            <input type="text" name="UserName" placeholder="Name" required />
+            <input type="text" name="Mail" placeholder="Email" required />
+            <input type="text" value="@ViewBag.id" name="Blogid" />
+            <textarea name="CommentText" placeholder="Message"></textarea>
+            <input type="submit" value="SEND" />
+        </form>
+    </div>*@
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#submitBtn").click(function (e) {
+            e.preventDefault();
+
+            var commentdata = {
+                UserName: $("#UserName").val(),
+                Mail: $("#Mail").val(),
+                BlogId: @ViewBag.id
+                ,
+                CommentText: $("#CommentText").val()
+            };
+
+            console.log(commentdata)
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("PartialComment", "Blog")',
+                data: commentdata,
+                success: function (response) {
+                    resetForm();
+                    location.reload()
+                }
+            });
+        });
+
+
+        function resetForm() {
+            $('#UserName').val('');
+            $('#Mail').val('');
+            $('#CommentText').val('');
+        }
+    });
+</script>
+<div class="content-form">
+    <h3>Bir yorum bırak</h3>
+    <form>
+        <input type="text" id="UserName" placeholder="Adınız..." />
+        <input type="text" id="Mail" placeholder="Mail adresiniz..." />
+        <textarea id="CommentText" placeholder="Mesajınız..."></textarea>
+        <button type="submit" class="btn btn-outline-dark" id="submitBtn">Ekle</button>
     </form>
 </div>

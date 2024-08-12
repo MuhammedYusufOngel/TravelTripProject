@@ -2,34 +2,37 @@
 @model List<Comment>
 
 @{
-    ViewBag.Title = "GetAllComments";
+    ViewBag.Title = "Tüm Yorumlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Get All Comments</h2>
 
-<table class="table table-bordered">
-    <tr>
-        <td>Id</td>
-        <td>User Name</td>
-        <td>Mail</td>
-        <td>CommentText</td>
-        <td>Delete</td>
-        <td>Update</td>
-        <td>Blog Title</td>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table table-bordered">
         <tr>
-            <th>@item.Id</th>
-            <th>@item.UserName</th>
-            <th>@item.Mail</th>
-            <th>@item.CommentText</th>
-            <th><a href="/Admin/DeleteComment/@item.Id" class="btn btn-danger">Delete</a></th>
-            <th><a href="/Admin/UpdateComment/@item.Id" class="btn btn-warning">Update</a></th>
-            <th>@item.Blog.Title</th>
+            <td>Id</td>
+            <td>User Name</td>
+            <td>Mail</td>
+            <td>CommentText</td>
+            <td>Delete</td>
+            <td>Update</td>
+            <td>Blog Title</td>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <th>@item.UserName</th>
+                <th>@item.Mail</th>
+                <th>@item.CommentText</th>
+                <th><a href="/Admin/DeleteComment/@item.Id" class="btn btn-danger">Delete</a></th>
+                <th><a href="/Admin/UpdateComment/@item.Id" class="btn btn-warning">Update</a></th>
+                <th>@item.Blog.Title</th>
+            </tr>
+        }
+    </table>
+</div>
+
 

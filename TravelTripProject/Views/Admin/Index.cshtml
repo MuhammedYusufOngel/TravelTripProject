@@ -1,34 +1,37 @@
 ﻿@using TravelTripProject.Models.Classes
 @model List<Blog>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tüm Bloglar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Blog List</h2>
 <br />
 
-<table class="table table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Delete</th>
-        <th>Update</th>
-        <th>Details</th>
-    </tr>
-    @foreach (var item in Model)
-    {   
+<div class="table-responsive">
+    <table class="table table-bordered">
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Title</td>
-            <td><a onclick="myFunction(@item.Id)" class="btn btn-danger">Delete</a></td>
-            <td><a href="/Admin/UpdateBlog/@item.Id" class="btn btn-warning">Update</a></td>
-            <td><a href="/Blog/BlogDetails/@item.Id" class="btn btn-primary">Details</a></td>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Details</th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td><a onclick="myFunction(@item.Id)" class="btn btn-danger">Delete</a></td>
+                <td><a href="/Admin/UpdateBlog/@item.Id" class="btn btn-warning">Update</a></td>
+                <td><a href="/Blog/BlogDetails/@item.Id" class="btn btn-primary">Details</a></td>
+            </tr>
+        }
+    </table>
+</div>
 
-<a href="/Admin/AddNewBlog" class="btn btn-default">New Blog</a>
+
+<a href="/Admin/AddNewBlog" class="btn btn-light">New Blog</a>
 
 <script>
     function myFunction(id) {

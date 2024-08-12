@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
-using System.Web;
 using System.Web.Mvc;
 using TravelTripProject.Models.Classes;
 
 namespace TravelTripProject.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin
-        Context c = new Context();
-        [Authorize]
+        Context c;
+
+        public AdminController()
+        {
+            c = new Context();
+        }
+
         public ActionResult Index()
         {
             var values = c.Blogs.ToList();
@@ -22,12 +25,14 @@ namespace TravelTripProject.Controllers
         [HttpGet]
         public ActionResult AddNewBlog()
         {
-            return View();
+            var model = new Blog();
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult AddNewBlog(Blog p)
         {
+            p.Date = DateTime.Now;
             c.Blogs.Add(p);
             c.SaveChanges();
             return RedirectToAction("Index");

@@ -1,0 +1,38 @@
+﻿
+<div id="comments">
+</div>
+
+@*<ul class="comment-list">
+        <li>
+            <div class="desc">
+                <img src="~/personal_blog-web/web/images/avatar.png" class="img-responsive" alt="">
+                <h3>@item.UserName</h3>
+            </div>
+
+            <p>@item.CommentText</p>
+        </li>
+    </ul>*@
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadComments()
+
+        function loadComments() {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetComments", "Blog")',
+                success: function (comments) {
+                    var datas = ''
+                    $.each(comments, function (i, item) {
+                        datas += ``
+                    });
+                    $('#Comments').html(datas);
+                }
+            });
+        }
+    });
+</script>

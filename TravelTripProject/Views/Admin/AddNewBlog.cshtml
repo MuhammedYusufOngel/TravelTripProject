@@ -1,21 +1,17 @@
 ﻿@model TravelTripProject.Models.Classes.Blog
 
 @{
-    ViewBag.Title = "AddNewBlog";
+    ViewBag.Title = "Yeni Blog Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Add New Blog</h2>
 <br />
-<form class="form-group" method="post">
+@using (Html.BeginForm("AddNewBlog", "Admin", FormMethod.Post))
+{
     @Html.LabelFor(x => x.Title)
     <br />
     @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-    <br />
-    <br />
-    @Html.LabelFor(x => x.Date)
-    <br />
-    @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
     <br />
     <br />
     @Html.LabelFor(x => x.Explanation)
@@ -30,5 +26,5 @@
     <br />
 
     <button type="submit" class="btn btn-success">Save</button>
-</form>
+}
 
